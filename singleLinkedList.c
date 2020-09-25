@@ -49,32 +49,31 @@ void  insertAtPosition()
                     return;
                 }
         }
-                newNode = (struct node *)malloc(sizeof(struct node));
-                printf("\nEnter Data :");
-                scanf("%d",&newNode->data);
-                beforeNode->next=newNode;
-                newNode->next=temp;
+        newNode = (struct node *)malloc(sizeof(struct node));
+        printf("\nEnter Data :");
+        scanf("%d",&newNode->data);
+        beforeNode->next=newNode;
+        newNode->next=temp;
+        size++;
      }
-     size++;
 }
 
 void insertAtEnd()
 {
-    newNode = (struct node *)malloc(sizeof(struct node));
-    printf("Enter Data :");
-    scanf("%d",&newNode->data);
-    if(head==NULL)
+    if(size==0)
     {
-        head=lastNode=newNode;
-        lastNode->next=0;
+        insertAtBeginning();
     }
     else
     {
+        newNode = (struct node *)malloc(sizeof(struct node));
+        printf("Enter Data :");
+        scanf("%d",&newNode->data);
         lastNode->next=newNode;
         lastNode=newNode;
         lastNode->next=0;
+        size++;
     }
-    size++;
 }
 
 void deleteAtBeginning()
@@ -89,8 +88,8 @@ void deleteAtBeginning()
         head=head->next;
         printf("The Deleted Element is %d",temp->data);
         free(temp);
+        size--;
     }
-    size--;
 }
 
 void deleteAtPosition()
@@ -127,9 +126,9 @@ void deleteAtPosition()
             beforeNode->next=temp->next;
             printf("The Deleted Element is %d",temp->data);
             free(temp);
+            size--;
         }
     }
-    size--;
 }
 
 void deleteAtEnd()
